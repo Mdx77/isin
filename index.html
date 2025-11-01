@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>ISIN Generator</title>
+    
+  </head>
+  <body>
+    
+    
+    
+    <script type="text/javascript" src="script.js"></script>
+   
+    <h1>ISIN Generator</h1>
+   
+    To customize enter the start characters of your ISIN like country code, initials, company name, etc. (optional)<p></p>
+    
+    <input type= "text" id="initials" onchange="displayISIN()" placeholder="Enter start of your ISIN" onkeypress="return (event.charCode > 64 && 
+	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"><p></p>
+    
+    To avoid confusion use the below options (optional). Any entered start or check digit not considered.<p></p>
+    <input type="checkbox" id="chcheckbox" onclick="displayISIN()" name="chcheckbox" checked />
+    <label for="chcheckbox">exclude CH, DE, EU, FR, US start (default)</label> <br>
+    <input type="checkbox" id="ocheckbox" onclick="displayISIN()" name="ocheckbox" checked />
+    <label for="ocheckbox">exclude letter O (default)</label> <br>
+    <input type="checkbox" id="nbcheckbox" onclick="nbcheckbox_checked()" name="nbcheckbox" unchecked />
+    <label for="nbcheckbox">exclude all letters</label> <br>
+    <input type="checkbox" id="zerocheckbox" onclick="displayISIN()" name="zerocheckbox" unchecked />
+    <label for="zerocheckbox">exclude digit 0</label> <br>
+    
+    <script>
+    function nbcheckbox_checked() {
+      if (nbcheckbox.checked) {
+        ocheckbox.checked=true
+        chcheckbox.checked=true
+      }
+       displayISIN()
+    }  
+      
+    function displayISIN() {
+        if (document.getElementById("initials").value.length>11) {
+          document.getElementById("ISIN_text").innerHTML = '<p>Error, your input is too long'
+        } else {
+        NSIN = document.getElementById("initials").value.toUpperCase() + ISINmiddle(11-document.getElementById("initials").value.length,zerocheckbox,ocheckbox,nbcheckbox)
+        verificationcode = getVerificationCode(NSIN+"0")
+        ISIN=NSIN + verificationcode
+      
+        document.getElementById("ISIN_text").innerHTML = 
+          '<p>Your customized ISIN is... <h2><img src="https://cdn.glitch.global/e0988317-d05f-40f7-974a-ff3d501d477a/refresh.png?v=1702080179872" style="vertical-align:middle" id="refresh" width = "50" title="Get a new ISIN" onclick="windowRefresh()"> ' + ISIN +' <img src="https://cdn.glitch.global/e0988317-d05f-40f7-974a-ff3d501d477a/copy.png?v=1693994279325" style="vertical-align:middle" id="copy" width = "50" title="Copy the ISIN" onclick="copyToClipboard(ISIN)"></h3>Click on the icons above to generate a different ISIN or copy it in the clipboard.';
+    
+        setCookie("ISINstart", document.getElementById("initials").value, 30)
+        }
+      if ((chcheckbox.checked) && (ISIN.startsWith("CH")) && (document.getElementById("initials").value.toUpperCase()!="CH")) {
+     displayISIN();
+      } 
+      if ((chcheckbox.checked) && (ISIN.startsWith("US")) && (document.getElementById("initials").value.toUpperCase()!="US")) {
+     displayISIN();
+      } 
+       if ((chcheckbox.checked) && (ISIN.startsWith("FR")) && (document.getElementById("initials").value.toUpperCase()!="FR")) {
+     displayISIN();
+      } 
+       if ((chcheckbox.checked) && (ISIN.startsWith("DE")) && (document.getElementById("initials").value.toUpperCase()!="DE")) {
+     displayISIN();
+      } 
+       if ((chcheckbox.checked) && (ISIN.startsWith("EU")) && (document.getElementById("initials").value.toUpperCase()!="EU")) {
+     displayISIN();
+      } 
+   
+    }
+      
+      function windowRefresh() {
+  displayISIN();
+   }
+      </script>
+
+  <div id="ISIN_text"></div>
+    <script>
+    let ISINstart = getCookie("ISINstart")
+  if (ISINstart != "") {
+    document.getElementById('initials').value=ISINstart
+  } 
+      displayISIN()
+    </script>
+    
+  <div id="disclaimer">
+    <h6>
+      <br>
+      <p>
+        The software is provided "As is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, 
+fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other 
+liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+      </p>
+      A cookie is set for 30 days, use of the tool implies tacit acceptance.
+      <p>
+        Done by Nicolas Courvoisier
+      </p>
+    
+    </h6>
+<!-- hitwebcounter Code START -->
+<a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7950592&style=0035&nbdigits=5&type=page&initCount=100" title="Free Counter" alt="web counter"   border="0" /></a>                                         
+    </div>   
+    
+    </body>
+</html>
