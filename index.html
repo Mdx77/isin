@@ -47,7 +47,7 @@
         ISIN=NSIN + verificationcode
       
         document.getElementById("ISIN_text").innerHTML = 
-          '<p>Your customized ISIN is... <h2><img src="refresh.png?v=1702080179872" style="vertical-align:middle" id="refresh" width = "50" title="Get a new ISIN" onclick="windowRefresh()"> ' + ISIN +' <img src="https://cdn.glitch.global/e0988317-d05f-40f7-974a-ff3d501d477a/copy.png?v=1693994279325" style="vertical-align:middle" id="copy" width = "50" title="Copy the ISIN" onclick="copyToClipboard(ISIN)"></h3>Click on the icons above to generate a different ISIN or copy it in the clipboard.';
+          '<p>Your customized ISIN is... <h2><img src="refresh.png?v=1702080179872" style="vertical-align:middle" id="refresh" width = "50" title="Get a new ISIN" onclick="windowRefresh()"> ' + ISIN +' <img src="copy.png?v=1693994279325" style="vertical-align:middle" id="copy" width = "50" title="Copy the ISIN" onclick="copyToClipboard(ISIN)"></h3>Click on the icons above to generate a different ISIN or copy it in the clipboard.';
     
         setCookie("ISINstart", document.getElementById("initials").value, 30)
         }
