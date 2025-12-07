@@ -2,7 +2,7 @@ body {
 margin: 0;
   height: 100vh;
 
-  /* Repeating radial gradient gives a fractal-ish vibe */
+  /* Layer 1: fractal-like repeating radial rainbow rings */
   background: repeating-radial-gradient(
     circle at center,
     red 0%,
@@ -14,15 +14,27 @@ margin: 0;
     violet 30%,
     red 35%
   );
-
   background-size: 200% 200%;
-  animation: fractalFlow 15s linear infinite;
+
+  /* Layer 2: blend mode overlay for extra depth */
+  mix-blend-mode: screen;
+
+  /* Two simultaneous animations: fractal flow + hue spin */
+  animation: fractalFlow 15s linear infinite,
+             hueSpin 20s linear infinite;
 }
 
+/* Animate the gradient’s position for flowing rings */
 @keyframes fractalFlow {
   0%   { background-position: 0% 0%; }
   50%  { background-position: 100% 100%; }
   100% { background-position: 0% 0%; }
+}
+
+/* Rotate the hue through the entire spectrum */
+@keyframes hueSpin {
+  from { filter: hue-rotate(0deg); }
+  to   { filter: hue-rotate(360deg); }
 }
 
 h1 {
