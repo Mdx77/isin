@@ -19,7 +19,7 @@
     <input type= "text" id="initials" onchange="displayISIN()" placeholder="Enter start of your ISIN" onkeypress="return (event.charCode > 64 && 
 	event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"><p></p>
     
-    To avoid confusion use the below options (optional). Any entered start not considered.<p></p>
+    To avoid confusion use the below options (optional). Any entered start or last verification digit not considered.<p></p>
     <input type="checkbox" id="chcheckbox" onclick="displayISIN()" name="chcheckbox" checked />
     <label for="chcheckbox">exclude CH, DE, EU, FR, US start (default)</label> <br>
     <input type="checkbox" id="ocheckbox" onclick="displayISIN()" name="ocheckbox" checked />
@@ -66,10 +66,6 @@
        if ((chcheckbox.checked) && (ISIN.startsWith("EU")) && (document.getElementById("initials").value.toUpperCase()!="EU")) {
      displayISIN();
       } 
-		if ((zerocheckbox.checked) && (ISIN.endsWith("0"))  {
-     displayISIN();
-      } 
-		
    
     }
       
