@@ -1,41 +1,40 @@
+html, body {
+  height: 100%;
+}
+
 body {
-margin: 0;
-  height: 100vh;
+  margin: 0;
+  /* Base background color under the fractal */
+  background-color: #0b0b12;
 
-  /* Layer 1: fractal-like repeating radial rainbow rings */
-  background: repeating-radial-gradient(
-    circle at center,
-    red 0%,
-    orange 5%,
-    yellow 10%,
-    green 15%,
-    blue 20%,
-    indigo 25%,
-    violet 30%,
-    red 35%
-  );
-  background-size: 200% 200%;
+  /* SVG fractal noise via data URL (no HTML/JS needed) */
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>\
+  <filter id='f'>\
+    <feTurbulence type='fractalNoise' baseFrequency='0.009' numOctaves='5' seed='7' stitchTiles='stitch'/>\
+    <feColorMatrix type='luminanceToAlpha'/>\
+  </filter>\
+  <rect width='100%' height='100%' filter='url(%23f)'/>\
+</svg>");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  /* Layer 2: blend mode overlay for extra depth */
-  mix-blend-mode: screen;
-
-  /* Two simultaneous animations: fractal flow + hue spin */
-  animation: fractalFlow 15s linear infinite,
-             hueSpin 20s linear infinite;
+  /* Optional color tint on top of the noise */
+  background-blend-mode: screen;
 }
 
-/* Animate the gradient’s position for flowing rings */
-@keyframes fractalFlow {
-  0%   { background-position: 0% 0%; }
-  50%  { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
+@keyframes fractalShift {
+  0%   { background-position: 50% 50%; }
+  50%  { background-position: 48% 52%; }
+  100% { background-position: 50% 50%; }
 }
 
-/* Rotate the hue through the entire spectrum */
-@keyframes hueSpin {
-  from { filter: hue-rotate(0deg); }
-  to   { filter: hue-rotate(360deg); }
+body {
+  animation: fractalShift 12s ease-in-out infinite;
 }
+
+
 
 h1 {
   color: blue;
