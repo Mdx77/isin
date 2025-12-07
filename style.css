@@ -1,5 +1,12 @@
 body {
   background-color: powderblue;
+  animation: backgroundCycle 60s infinite linear;
+}
+
+@keyframes backgroundCycle {
+  0%   { background-color: hsl(0, 100%, 50%); }    /* Red */
+  50%  { background-color: hsl(180, 100%, 50%); }  /* Cyan */
+  100% { background-color: hsl(360, 100%, 50%); }  /* Back to Red */
 }
 
 h1 {
