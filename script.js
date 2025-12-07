@@ -60,7 +60,7 @@ function copyToClipboard(text) {
     document.execCommand("copy");
     document.body.removeChild(dummy);
   
-  document.getElementById("copy").src = "https://cdn.glitch.global/e0988317-d05f-40f7-974a-ff3d501d477a/copied.png?v=1693994546374";
+  document.getElementById("copy").src = "copied.png?v=1693994546374";
   document.getElementById("copy").title = "ISIN copied!";
   
 }
