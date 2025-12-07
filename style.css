@@ -1,22 +1,28 @@
 body {
-  background: linear-gradient(
-    270deg,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet
+margin: 0;
+  height: 100vh;
+
+  /* Repeating radial gradient gives a fractal-ish vibe */
+  background: repeating-radial-gradient(
+    circle at center,
+    red 0%,
+    orange 5%,
+    yellow 10%,
+    green 15%,
+    blue 20%,
+    indigo 25%,
+    violet 30%,
+    red 35%
   );
-  background-size: 1400% 1400%;
-  animation: rainbowCycle 20s linear infinite;
+
+  background-size: 200% 200%;
+  animation: fractalFlow 15s linear infinite;
 }
 
-@keyframes rainbowCycle {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes fractalFlow {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 h1 {
